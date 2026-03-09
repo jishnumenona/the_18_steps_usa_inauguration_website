@@ -58,10 +58,13 @@ const books = [
         <p class="text-cream/70 mb-8">
           We are a non-profit organization. All donations go directly towards supporting our cultural programs, educational initiatives, and community events.
         </p>
-        <a href="#" class="btn-primary text-lg px-12 py-4" onclick="alert('Donation portal coming soon! Please check back later.'); return false;">
+        <a href="https://www.zeffy.com/en-US/donation-form/donate-to-the-18-steps-usa-inaugural-event" target="_blank" rel="noopener" class="btn-primary text-lg px-12 py-4 inline-block">
           Donate Now
         </a>
-        <p class="text-cream/40 text-xs mt-4">Donation portal (Zeffy/GoFundMe) coming soon</p>
+        <div class="mt-8">
+          <img src={`${base}/images/qr/zeffy-donate.png`} alt="Donate QR Code" class="w-40 h-40 mx-auto rounded-lg border border-saffron/20 mb-3" />
+          <p class="text-cream/50 text-xs">Scan to donate via Zeffy</p>
+        </div>
       </div>
     </div>
   </section>
