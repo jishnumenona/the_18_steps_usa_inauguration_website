@@ -1,0 +1,64 @@
+Prompt
+
+
+I want to create a website for the inauguration of a non-profit spiritual community.
+The name of the community is called The 18 steps.
+The community is focused on Sanadhana Dharma values, lead by Sharath A Haridasan, our mentor.
+Sharath A Haridasan
+
+A filmmaker, producer and writer, by profession, Sharath A Haridasan is a scholar, speaker, and passionate educator, who has dedicated his life to unraveling the depths of Sanatana Dharma, rituals, literature, and history. His lectures and discourses bring the essence of sadhana, philosophy, and spiritual practices to seekers in a way that is both profound and practical. Through The 18 Steps, he continues to guide and inspire thousands on their spiritual journey.
+
+He has also written books. Here is the authors bio from Amazon books.: Sharath A Haridasan is a spiritual teacher, Vedic speaker, author, and filmmaker who blends ancient wisdom with modern insights. Through poetic expression, he guides individuals towards a life of purpose, prosperity, and spiritual depth.
+
+Here is some more information about the 18 steps.
+The 18 Steps was born from a deep commitment to preserving and sharing the timeless wisdom of Sanatana Dharma. Inspired by the profound teachings of Sharath A Haridasan, we strive to bring knowledge, tradition, and service together. The 18 steps USA strives to bring these values to American shores.
+Through lectures, courses, workshops, and digital initiatives, we make spiritual and historical knowledge accessible to seekers worldwide. Beyond education, we actively engage in heritage conservation, temple renovation, Vedic studies, and humanitarian efforts, ensuring that the light of Dharma continues to shine for generations to come.
+
+We are also planning a raffle to win $1500 worth of gift vouchers.
+
+We also have a donation page to make payments via a 3rd party payment portal.
+
+We also have a plan to sell some hand drawn paintings so we need a dedicated gallery for showcasing the pictures with a title and pricing and a contact for purchase button.
+
+The inauguration event also features a live action Dance Drama with Chayamughi a mesmerising philosophical thriller.
+
+There are a few more details about the event in this PDF i attached.
+
+Pages
+- Landing page
+- Main title
+- Beautiful images
+- Event details
+- Count Down to the event date
+- RSVP section for attendees
+- Raffle gift vouchers
+- Committee members
+- Contact information
+
+Dedicated page for Chayamughi
+- Images
+- Description
+- Videos
+- Social media links
+
+Donations page
+- Donations link
+- Amazon Book purchase links
+Painting Gallery page
+
+
+Aesthetics
+I want the website to look very spiritual, aesthetic, pleasing, majestic and rich. Values of Snadhana dharma and Vedic values should be evident. Use the color palettes in the image: '/Users/jishnumenonasokakumar/Workspaces/Technical/the_18_steps/inauguration_website/images/aesthetic images/main_vishnu.webp'
+
+Tech stack
+Make the webpage in a frontend framework like Astro that is scalable, modern and aesthetic. I want to be able to scale this up later so that we can expand the functionalities later. Like RSVP, User account integrations, Profile pages etc. Currently, do not implement any RSVP backend functionality or nay other dynamic functionality, but we can implement  the front end for now.
+
+Execution
+1. All the code should be committed to GitHub. Here is the GitHub link:https://github.com/jishnumenona/the_18_steps_usa_inauguration_website.git
+
+Create a plan and document all the plans in a folder called Docs. /Users/jishnumenonasokakumar/Workspaces/Technical/the_18_steps/inauguration_website/docs
+Implement an action plan and update the progress of the action plan as you go forward.
+Ask me any clarifying questions before implementation.
+
+
+

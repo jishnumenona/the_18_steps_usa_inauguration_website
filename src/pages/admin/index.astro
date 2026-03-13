@@ -1,0 +1,45 @@
+---
+import '../../styles/global.css';
+const base = import.meta.env.BASE_URL;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/jpeg" href={`${base}/images/aesthetic/the_18_steps_logo.jpg`} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <title>Admin | The 18 Steps USA</title>
+  </head>
+  <body class="min-h-screen bg-cosmic text-cream flex items-center justify-center">
+    <div class="max-w-md w-full px-6">
+      <div class="text-center mb-10">
+        <h1 class="font-display text-3xl font-bold text-gradient-gold mb-2">Admin Tools</h1>
+        <div class="gold-divider"></div>
+        <p class="text-cream/50 text-sm">The 18 Steps USA — Event Management</p>
+      </div>
+
+      <a href={`${base}/admin/raffle`} class="card-dark block group hover:border-saffron/50 transition-all duration-300">
+        <div class="flex items-center gap-4">
+          <div class="w-14 h-14 rounded-lg bg-gradient-to-br from-saffron/20 to-amber/20 flex items-center justify-center group-hover:from-saffron/40 group-hover:to-amber/40 transition-all">
+            <svg class="w-7 h-7 text-saffron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+            </svg>
+          </div>
+          <div>
+            <h2 class="text-cream font-semibold text-lg group-hover:text-saffron transition-colors">Raffle Winner Selection</h2>
+            <p class="text-cream/50 text-sm">Live raffle draw — $1,500 in gift vouchers</p>
+          </div>
+          <svg class="w-5 h-5 text-cream/30 ml-auto group-hover:text-saffron transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </div>
+      </a>
+
+      <p class="text-center text-cream/20 text-xs mt-10">This page is not listed in navigation</p>
+    </div>
+  </body>
+</html>

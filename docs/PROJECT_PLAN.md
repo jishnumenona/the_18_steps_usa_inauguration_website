@@ -118,4 +118,4 @@ inauguration_website/
 | 12 | Build Painting Gallery page | Done |
 | 13 | Copy images to public directory | Done |
 | 14 | Final polish and responsive design | Done |
-| 15 | Initialize git repo and push to GitHub | Pending |
+| 15 | Initialize git repo and push to GitHub | Done |

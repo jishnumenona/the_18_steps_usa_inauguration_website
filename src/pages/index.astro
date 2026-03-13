@@ -300,6 +300,39 @@ const base = import.meta.env.BASE_URL;
     </div>
   </section>
 
+  <!-- ===== PROGRAM SECTION ===== -->
+  <section class="py-24 bg-gradient-to-b from-cosmic-light/20 to-cosmic">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="section-title text-4xl md:text-5xl">Program</h2>
+        <div class="gold-divider"></div>
+        <p class="section-subtitle mt-4">Event Schedule for June 6, 2026</p>
+      </div>
+
+      <div class="max-w-2xl mx-auto space-y-0">
+        {[
+          { time: '2:00 PM', event: 'Invocation / Prayer' },
+          { time: '2:05 PM', event: 'Welcome Address' },
+          { time: '2:10 PM', event: 'Inauguration', highlight: true },
+          { time: '2:15 PM', event: 'Keynote Address', highlight: true },
+          { time: '3:15 PM', event: 'Presentation of Activities' },
+          { time: '3:25 PM', event: 'Honoring Special Participants' },
+          { time: '3:30 PM', event: 'Felicitations' },
+          { time: '3:45 PM', event: 'Vote of Thanks' },
+          { time: '3:50 PM', event: 'Tea Break' },
+          { time: '4:50 PM', event: 'Chaayamukhi', highlight: true },
+          { time: '5:50 PM', event: 'Dinner & Social' },
+        ].map((item) => (
+          <div class={`flex items-center gap-6 py-3 border-b border-saffron/10 ${item.highlight ? '' : ''}`}>
+            <span class={`font-mono text-sm w-20 flex-shrink-0 ${item.highlight ? 'text-saffron font-bold' : 'text-cream/60'}`}>{item.time}</span>
+            <div class={`w-2 h-2 rounded-full flex-shrink-0 ${item.highlight ? 'bg-saffron' : 'bg-saffron/30'}`}></div>
+            <span class={`font-serif ${item.highlight ? 'text-saffron font-semibold text-lg' : 'text-cream/80'}`}>{item.event}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- ===== RAFFLE SECTION ===== -->
   <section class="py-24 bg-cosmic relative">
     <div class="absolute inset-0 bg-pattern-mandala opacity-30"></div>
@@ -309,16 +342,63 @@ const base = import.meta.env.BASE_URL;
         <div class="gold-divider"></div>
         <p class="section-subtitle mt-4 mb-12">Exciting Raffle Draw at the Event</p>
 
-        <div class="card-dark max-w-2xl mx-auto animate-glow">
-          <div class="text-center">
-            <svg class="w-16 h-16 text-saffron mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
-            </svg>
-            <h3 class="text-3xl md:text-4xl font-display font-bold text-gradient-gold mb-4">$1,500</h3>
-            <p class="text-cream/80 text-xl mb-2">in Gift Vouchers</p>
-            <p class="text-cream/60">
-              Every attendee gets a chance to win! Raffle draw will be held during the inauguration event. You must be present to win.
-            </p>
+        <div class="max-w-2xl mx-auto relative">
+          <!-- Animated sparkle/firework particles -->
+          <div class="absolute -inset-20 pointer-events-none z-20" id="raffle-sparkles"></div>
+
+          <div id="raffle-card" class="relative bg-gradient-to-br from-cosmic-light/60 via-cosmic to-royal/30 border-2 border-saffron/40 rounded-2xl p-10 md:p-14 shadow-[0_0_60px_rgba(212,160,23,0.15)] hover:shadow-[0_0_80px_rgba(212,160,23,0.3)] transition-all duration-500 z-10">
+            <!-- Decorative corner accents -->
+            <div class="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-saffron/60 rounded-tl-2xl"></div>
+            <div class="absolute top-0 right-0 w-16 h-16 border-t-2 border-r-2 border-saffron/60 rounded-tr-2xl"></div>
+            <div class="absolute bottom-0 left-0 w-16 h-16 border-b-2 border-l-2 border-saffron/60 rounded-bl-2xl"></div>
+            <div class="absolute bottom-0 right-0 w-16 h-16 border-b-2 border-r-2 border-saffron/60 rounded-br-2xl"></div>
+
+            <div class="text-center">
+              <div class="inline-block animate-float mb-6">
+                <div id="raffle-icon" class="w-20 h-20 rounded-full bg-gradient-to-br from-saffron/30 to-amber/20 flex items-center justify-center mx-auto transition-all duration-500">
+                  <!-- Gift icon (default) -->
+                  <svg id="icon-gift" class="w-10 h-10 text-saffron transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+                  </svg>
+                  <!-- Gold coin (on hover) -->
+                  <svg id="icon-coin" class="w-12 h-12 hidden transition-all duration-300" viewBox="0 0 64 64" fill="none">
+                    <ellipse cx="32" cy="32" rx="28" ry="28" fill="url(#coinGrad)" stroke="#b8860b" stroke-width="2"/>
+                    <ellipse cx="32" cy="32" rx="22" ry="22" fill="none" stroke="#b8860b" stroke-width="1" opacity="0.5"/>
+                    <text x="32" y="38" text-anchor="middle" font-family="Cinzel,serif" font-size="22" font-weight="700" fill="#8B6914">$</text>
+                    <defs>
+                      <radialGradient id="coinGrad" cx="40%" cy="35%">
+                        <stop offset="0%" stop-color="#ffd700"/>
+                        <stop offset="50%" stop-color="#f0c040"/>
+                        <stop offset="100%" stop-color="#d4a017"/>
+                      </radialGradient>
+                    </defs>
+                  </svg>
+                </div>
+              </div>
+
+              <p class="text-saffron/80 text-sm tracking-[0.3em] uppercase mb-3 font-medium">Lucky Draw Raffle</p>
+              <h3 class="text-5xl md:text-6xl font-display font-bold text-gradient-gold mb-3">$1,500</h3>
+              <p class="text-cream/90 text-2xl font-serif mb-6">in Gift Vouchers</p>
+
+              <div class="gold-divider"></div>
+
+              <p class="text-cream/70 mt-6 mb-8 max-w-md mx-auto leading-relaxed">
+                Every attendee gets a chance to win! Raffle draw will be held during the inauguration event. You must be present to win.
+              </p>
+
+              <a
+                href="https://www.zeffy.com/en-US/ticketing/support-the-18-steps-usa-lucky-draw-raffle"
+                target="_blank"
+                rel="noopener"
+                class="raffle-btn group inline-flex items-center gap-3 bg-gradient-to-r from-saffron to-amber text-cosmic font-display font-bold text-lg tracking-wider uppercase px-10 py-4 rounded-lg shadow-[0_4px_30px_rgba(212,160,23,0.4)] hover:shadow-[0_6px_40px_rgba(212,160,23,0.6)] hover:scale-105 hover:from-amber hover:to-saffron transition-all duration-300"
+              >
+                <svg class="w-5 h-5 group-hover:animate-bounce" fill="currentColor" viewBox="0 0 24 24"><path d="M21 5.5a2.5 2.5 0 01-3.07 2.44L12 19.5l-5.93-11.56A2.5 2.5 0 013 5.5 2.5 2.5 0 015.5 3c.98 0 1.85.56 2.27 1.42L12 12.5l4.23-8.08A2.5 2.5 0 0118.5 3 2.5 2.5 0 0121 5.5z"/></svg>
+                Buy Raffle Tickets
+                <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+              </a>
+
+              <p class="text-cream/40 text-xs mt-4">Powered by Zeffy — 100% goes to the cause</p>
+            </div>
           </div>
         </div>
       </div>
@@ -433,76 +513,46 @@ const base = import.meta.env.BASE_URL;
     </div>
   </section>
 
-  <!-- ===== SOCIAL MEDIA & CONNECT ===== -->
+  <!-- ===== CONNECT WITH US ===== -->
   <section class="py-24 bg-cosmic relative">
     <div class="absolute inset-0 bg-pattern-mandala opacity-30"></div>
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
       <h2 class="section-title text-4xl md:text-5xl">Connect With Us</h2>
       <div class="gold-divider"></div>
       <p class="text-cream/60 mt-4 mb-12 font-serif italic text-lg">Join our community and stay updated on all events and activities</p>
 
-      <div class="grid grid-cols-2 md:grid-cols-5 gap-8 max-w-4xl mx-auto">
-        <!-- Donate -->
-        <a href="https://www.zeffy.com/en-US/donation-form/donate-to-the-18-steps-usa-inaugural-event" target="_blank" rel="noopener" class="group text-center">
-          <div class="bg-cosmic-light/40 border border-saffron/20 rounded-lg p-4 group-hover:border-saffron/50 group-hover:bg-cosmic-light/60 transition-all">
-            <img src={`${base}/images/qr/zeffy-donate.png`} alt="Donate QR Code" class="w-full aspect-square rounded-md mb-3" />
-            <div class="flex items-center justify-center gap-2 mb-1">
-              <svg class="w-5 h-5 text-saffron" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-            </div>
-            <p class="text-cream/50 text-xs">Donate via Zeffy</p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-8">
+        <!-- QR Code to socials page -->
+        <a href={`${base}/socials`} class="group">
+          <div class="bg-cosmic-light/40 border border-saffron/20 rounded-xl p-5 group-hover:border-saffron/50 group-hover:bg-cosmic-light/60 transition-all">
+            <img src={`${base}/images/qr/socials-page.png`} alt="Scan for all links" class="w-48 h-48 rounded-lg mb-3" />
+            <p class="text-saffron font-semibold text-sm">Scan for All Links</p>
           </div>
         </a>
 
-        <!-- YouTube -->
-        <a href="https://youtube.com/@the18stepsusa?si=wSvhy9Rz9nT7_Vac" target="_blank" rel="noopener" class="group text-center">
-          <div class="bg-cosmic-light/40 border border-saffron/20 rounded-lg p-4 group-hover:border-saffron/50 group-hover:bg-cosmic-light/60 transition-all">
-            <img src={`${base}/images/qr/youtube.png`} alt="YouTube QR Code" class="w-full aspect-square rounded-md mb-3" />
-            <div class="flex items-center justify-center gap-2 mb-1">
-              <svg class="w-5 h-5 text-saffron" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-              <svg class="w-5 h-5 text-saffron mx-auto" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-            </div>
-            <p class="text-cream/50 text-xs">@the18stepsusa</p>
-          </div>
-        </a>
-
-        <!-- Instagram -->
-        <a href="https://www.instagram.com/the18stepsusa?igsh=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener" class="group text-center">
-          <div class="bg-cosmic-light/40 border border-saffron/20 rounded-lg p-4 group-hover:border-saffron/50 group-hover:bg-cosmic-light/60 transition-all">
-            <img src={`${base}/images/qr/instagram.png`} alt="Instagram QR Code" class="w-full aspect-square rounded-md mb-3" />
-            <div class="flex items-center justify-center gap-2 mb-1">
-              <svg class="w-5 h-5 text-saffron" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-              <svg class="w-5 h-5 text-saffron mx-auto" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-            </div>
-            <p class="text-cream/50 text-xs">@the18stepsusa</p>
-          </div>
-        </a>
-
-        <!-- Facebook -->
-        <a href="https://www.facebook.com/profile.php?id=61587863878976&mibextid=wwXIfr&mibextid=wwXIfr" target="_blank" rel="noopener" class="group text-center">
-          <div class="bg-cosmic-light/40 border border-saffron/20 rounded-lg p-4 group-hover:border-saffron/50 group-hover:bg-cosmic-light/60 transition-all">
-            <img src={`${base}/images/qr/facebook.png`} alt="Facebook QR Code" class="w-full aspect-square rounded-md mb-3" />
-            <div class="flex items-center justify-center gap-2 mb-1">
-              <svg class="w-5 h-5 text-saffron" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-              <svg class="w-5 h-5 text-saffron mx-auto" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-            </div>
-            <p class="text-cream/50 text-xs">The 18 Steps USA</p>
-          </div>
-        </a>
-
-        <!-- WhatsApp -->
-        <a href="https://chat.whatsapp.com/GulA5rJrkVc1GthTRZWDvl?mode=gi_t" target="_blank" rel="noopener" class="group text-center">
-          <div class="bg-cosmic-light/40 border border-saffron/20 rounded-lg p-4 group-hover:border-saffron/50 group-hover:bg-cosmic-light/60 transition-all">
-            <img src={`${base}/images/qr/whatsapp.png`} alt="WhatsApp QR Code" class="w-full aspect-square rounded-md mb-3" />
-            <div class="flex items-center justify-center gap-2 mb-1">
-              <svg class="w-5 h-5 text-saffron" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              <svg class="w-5 h-5 text-saffron mx-auto" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-            </div>
-            <p class="text-cream/50 text-xs">Join Community</p>
-          </div>
-        </a>
+        <!-- Social icons row -->
+        <div class="text-left space-y-4">
+          <a href="https://youtube.com/@the18stepsusa" target="_blank" rel="noopener" class="flex items-center gap-3 text-cream/70 hover:text-saffron transition-colors">
+            <svg class="w-6 h-6 text-saffron" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            <span class="text-sm">YouTube</span>
+          </a>
+          <a href="https://www.instagram.com/the18stepsusa" target="_blank" rel="noopener" class="flex items-center gap-3 text-cream/70 hover:text-saffron transition-colors">
+            <svg class="w-6 h-6 text-saffron" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            <span class="text-sm">Instagram</span>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61587863878976" target="_blank" rel="noopener" class="flex items-center gap-3 text-cream/70 hover:text-saffron transition-colors">
+            <svg class="w-6 h-6 text-saffron" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            <span class="text-sm">Facebook</span>
+          </a>
+          <a href="https://chat.whatsapp.com/GulA5rJrkVc1GthTRZWDvl" target="_blank" rel="noopener" class="flex items-center gap-3 text-cream/70 hover:text-saffron transition-colors">
+            <svg class="w-6 h-6 text-saffron" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+            <span class="text-sm">WhatsApp</span>
+          </a>
+          <a href={`${base}/socials`} class="inline-block mt-2 text-saffron hover:text-amber text-sm font-medium tracking-wider uppercase transition-colors">
+            View All Links &rarr;
+          </a>
+        </div>
       </div>
-
-      <p class="text-cream/50 text-sm mt-8">Scan any QR code with your phone to connect instantly</p>
     </div>
   </section>
 
@@ -597,4 +647,160 @@ const base = import.meta.env.BASE_URL;
     e.preventDefault();
     alert('Thank you for your RSVP! We will confirm your reservation soon.');
   });
+
+  // Confetti effect on raffle section hover
+  const raffleCard = document.getElementById('raffle-card');
+  const sparklesContainer = document.getElementById('raffle-sparkles');
+  let confettiInterval: ReturnType<typeof setInterval> | null = null;
+
+  const confettiColors = ['#d4a017', '#f0c040', '#e8b829', '#fff5d4', '#ff9f43', '#ffd700'];
+
+  function createConfetti() {
+    if (!sparklesContainer) return;
+    const piece = document.createElement('div');
+    const size = Math.random() * 8 + 4;
+    const color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+    const left = Math.random() * 100;
+    const duration = Math.random() * 2 + 1.5;
+    const delay = Math.random() * 0.5;
+    const rotation = Math.random() * 360;
+    const shapes = ['circle', 'square', 'strip'];
+    const shape = shapes[Math.floor(Math.random() * shapes.length)];
+
+    piece.style.cssText = `
+      position: absolute;
+      top: -10px;
+      left: ${left}%;
+      width: ${shape === 'strip' ? size * 0.4 : size}px;
+      height: ${shape === 'circle' ? size : size * (shape === 'strip' ? 2.5 : 1)}px;
+      background: ${color};
+      border-radius: ${shape === 'circle' ? '50%' : shape === 'strip' ? '2px' : '1px'};
+      opacity: 0.9;
+      pointer-events: none;
+      animation: confetti-fall ${duration}s ${delay}s ease-in forwards;
+      transform: rotate(${rotation}deg);
+    `;
+    sparklesContainer.appendChild(piece);
+    setTimeout(() => piece.remove(), (duration + delay) * 1000);
+  }
+
+  // Firework particle burst from the gift icon
+  function createFirework() {
+    if (!sparklesContainer || !raffleCard) return;
+    // Calculate origin relative to sparkles container (which is -inset-20 = 80px offset)
+    const cardRect = raffleCard.getBoundingClientRect();
+    const containerRect = sparklesContainer.getBoundingClientRect();
+    const originX = ((cardRect.left - containerRect.left + cardRect.width / 2) / containerRect.width) * 100;
+    const originY = ((cardRect.top - containerRect.top + 80) / containerRect.height) * 100;
+    const particleCount = 30 + Math.floor(Math.random() * 20);
+    const burstColors = ['#d4a017', '#f0c040', '#ff9f43', '#ffd700', '#fff5d4', '#e74c3c', '#f39c12', '#ff6b6b'];
+
+    for (let i = 0; i < particleCount; i++) {
+      const spark = document.createElement('div');
+      const angle = (Math.PI * 2 * i) / particleCount + (Math.random() - 0.5) * 0.5;
+      const velocity = 80 + Math.random() * 120;
+      const dx = Math.cos(angle) * velocity;
+      const dy = Math.sin(angle) * velocity;
+      const size = Math.random() * 4 + 2;
+      const color = burstColors[Math.floor(Math.random() * burstColors.length)];
+      const duration = 0.8 + Math.random() * 0.6;
+
+      spark.style.cssText = `
+        position: absolute;
+        left: ${originX}%;
+        top: ${originY}%;
+        width: ${size}px;
+        height: ${size}px;
+        background: ${color};
+        border-radius: 50%;
+        pointer-events: none;
+        box-shadow: 0 0 ${size * 2}px ${color};
+        animation: firework-burst ${duration}s ease-out forwards;
+        --dx: ${dx}px;
+        --dy: ${dy}px;
+      `;
+      sparklesContainer.appendChild(spark);
+      setTimeout(() => spark.remove(), duration * 1000);
+    }
+  }
+
+  // Trail sparks that shoot up before bursting
+  function createTrail() {
+    if (!sparklesContainer || !raffleCard) return;
+    const cardRect = raffleCard.getBoundingClientRect();
+    const containerRect = sparklesContainer.getBoundingClientRect();
+    const centerX = ((cardRect.left - containerRect.left + cardRect.width / 2) / containerRect.width) * 100;
+    const bottomY = ((cardRect.bottom - containerRect.top - 100) / containerRect.height) * 100;
+    const startX = centerX - 2 + Math.random() * 4;
+    const trail = document.createElement('div');
+    trail.style.cssText = `
+      position: absolute;
+      left: ${startX}%;
+      top: ${bottomY}%;
+      width: 3px;
+      height: 3px;
+      background: #ffd700;
+      border-radius: 50%;
+      pointer-events: none;
+      box-shadow: 0 0 6px #ffd700, 0 0 12px #d4a017;
+      animation: firework-trail 0.4s ease-out forwards;
+    `;
+    sparklesContainer.appendChild(trail);
+    setTimeout(() => {
+      trail.remove();
+      createFirework();
+    }, 350);
+  }
+
+  let fireworkInterval: ReturnType<typeof setInterval> | null = null;
+
+  const iconGift = document.getElementById('icon-gift');
+  const iconCoin = document.getElementById('icon-coin');
+  const raffleIconWrap = document.getElementById('raffle-icon');
+
+  raffleCard?.addEventListener('mouseenter', () => {
+    // Swap gift to coin
+    iconGift?.classList.add('hidden');
+    iconCoin?.classList.remove('hidden');
+    raffleIconWrap?.classList.add('bg-gradient-to-br', 'from-amber/40', 'to-saffron/40', 'shadow-[0_0_20px_rgba(212,160,23,0.5)]', 'scale-110');
+    // Confetti
+    for (let i = 0; i < 20; i++) createConfetti();
+    confettiInterval = setInterval(() => {
+      for (let i = 0; i < 5; i++) createConfetti();
+    }, 300);
+    // Fireworks - initial burst then periodic
+    createTrail();
+    fireworkInterval = setInterval(() => createTrail(), 1200);
+  });
+
+  raffleCard?.addEventListener('mouseleave', () => {
+    // Swap coin back to gift
+    iconCoin?.classList.add('hidden');
+    iconGift?.classList.remove('hidden');
+    raffleIconWrap?.classList.remove('from-amber/40', 'to-saffron/40', 'shadow-[0_0_20px_rgba(212,160,23,0.5)]', 'scale-110');
+    if (confettiInterval) {
+      clearInterval(confettiInterval);
+      confettiInterval = null;
+    }
+    if (fireworkInterval) {
+      clearInterval(fireworkInterval);
+      fireworkInterval = null;
+    }
+  });
 </script>
+
+<style>
+  @keyframes confetti-fall {
+    0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.9; }
+    50% { opacity: 1; }
+    100% { transform: translateY(500px) rotate(720deg) scale(0.3); opacity: 0; }
+  }
+  @keyframes firework-burst {
+    0% { transform: translate(0, 0) scale(1); opacity: 1; }
+    100% { transform: translate(var(--dx), var(--dy)) scale(0); opacity: 0; }
+  }
+  @keyframes firework-trail {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-200px); opacity: 0.3; }
+  }
+</style>

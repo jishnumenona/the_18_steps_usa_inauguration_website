@@ -1,0 +1,660 @@
+---
+import '../../styles/global.css';
+const base = import.meta.env.BASE_URL;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/jpeg" href={`${base}/images/aesthetic/the_18_steps_logo.jpg`} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <title>Raffle Draw | The 18 Steps USA</title>
+  </head>
+  <body class="min-h-screen bg-cosmic text-cream overflow-hidden">
+    <div class="absolute inset-0 bg-pattern-mandala opacity-20"></div>
+
+    <!-- Ambient golden particles -->
+    <div id="ambient-particles" class="absolute inset-0 pointer-events-none"></div>
+
+    <!-- Main content -->
+    <div class="relative z-10 h-screen flex flex-col">
+
+      <!-- Header -->
+      <header class="text-center pt-8 pb-4 flex-shrink-0">
+        <p class="text-saffron/60 text-sm tracking-[0.3em] uppercase mb-2">The 18 Steps USA — Inauguration 2026</p>
+        <h1 class="font-display text-5xl md:text-7xl font-bold text-gradient-gold">Raffle Draw</h1>
+        <div class="gold-divider"></div>
+        <p class="text-cream/40 text-sm mt-1">$1,500 in Gift Vouchers</p>
+      </header>
+
+      <!-- CSV Upload Area (shown when no data loaded) -->
+      <div id="upload-area" class="flex-1 flex items-center justify-center px-6">
+        <div class="card-dark max-w-lg w-full text-center p-10 border-dashed border-2 border-saffron/30 hover:border-saffron/60 transition-all cursor-pointer" id="drop-zone">
+          <svg class="w-16 h-16 text-saffron/50 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+          </svg>
+          <p class="text-cream/70 text-lg mb-2">Drop Zeffy CSV here or click to upload</p>
+          <p class="text-cream/40 text-sm">Export your ticket list from Zeffy and upload it</p>
+          <input type="file" id="csv-input" accept=".csv" class="hidden" />
+        </div>
+      </div>
+
+      <!-- Prize Selection Area (shown after CSV loaded) -->
+      <div id="prize-area" class="flex-1 flex flex-col items-center justify-center px-6 hidden">
+        <p id="participant-count" class="text-saffron/70 text-lg mb-8 tracking-wide"></p>
+
+        <div class="flex flex-wrap items-center justify-center gap-6 mb-10">
+          <!-- 1st Prize -->
+          <button id="btn-first" class="prize-btn group" data-prize="first" disabled>
+            <div class="prize-btn-inner">
+              <span class="prize-label">1st Prize</span>
+              <span class="prize-amount">$750</span>
+              <span class="prize-winner hidden text-sm mt-1 text-cream/70 max-w-[200px] truncate"></span>
+            </div>
+            <div class="prize-check hidden">
+              <svg class="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+          </button>
+
+          <!-- 2nd Prize -->
+          <button id="btn-second" class="prize-btn group" data-prize="second" disabled>
+            <div class="prize-btn-inner">
+              <span class="prize-label">2nd Prize</span>
+              <span class="prize-amount">$500</span>
+              <span class="prize-winner hidden text-sm mt-1 text-cream/70 max-w-[200px] truncate"></span>
+            </div>
+            <div class="prize-check hidden">
+              <svg class="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+          </button>
+
+          <!-- 3rd Prize -->
+          <button id="btn-third" class="prize-btn group" data-prize="third" disabled>
+            <div class="prize-btn-inner">
+              <span class="prize-label">3rd Prize</span>
+              <span class="prize-amount">$250</span>
+              <span class="prize-winner hidden text-sm mt-1 text-cream/70 max-w-[200px] truncate"></span>
+            </div>
+            <div class="prize-check hidden">
+              <svg class="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+          </button>
+        </div>
+
+        <!-- Winners Summary (shown after all 3 selected) -->
+        <div id="winners-summary" class="hidden w-full max-w-2xl mt-6 animate-slide-up">
+          <div class="card-dark text-center p-8">
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-gradient-gold mb-2">All Winners</h2>
+            <div class="gold-divider"></div>
+            <div class="space-y-4 mt-6">
+              <div class="flex items-center justify-between border-b border-saffron/10 pb-3">
+                <span class="text-saffron font-display tracking-wider text-lg">1st Prize — $750</span>
+                <span id="summary-first" class="text-cream text-xl font-semibold"></span>
+              </div>
+              <div class="flex items-center justify-between border-b border-saffron/10 pb-3">
+                <span class="text-saffron font-display tracking-wider text-lg">2nd Prize — $500</span>
+                <span id="summary-second" class="text-cream text-xl font-semibold"></span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-saffron font-display tracking-wider text-lg">3rd Prize — $250</span>
+                <span id="summary-third" class="text-cream text-xl font-semibold"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Back link -->
+        <a href={`${base}/admin`} class="text-cream/30 hover:text-cream/60 text-sm transition-colors mt-4">&larr; Back to Admin</a>
+      </div>
+
+      <!-- Slot Machine / Countdown / Winner Overlay -->
+      <div id="overlay" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-cosmic/95 backdrop-blur-sm"></div>
+        <div id="effects-container" class="absolute inset-0 pointer-events-none overflow-hidden"></div>
+        <div class="relative z-10 h-full flex flex-col items-center justify-center">
+          <!-- Slot machine names -->
+          <div id="slot-display" class="text-center hidden">
+            <p id="slot-prize-label" class="text-saffron/80 text-2xl tracking-[0.2em] uppercase mb-4 font-display"></p>
+            <p id="slot-name" class="font-display text-5xl md:text-7xl text-cream font-bold transition-all"></p>
+          </div>
+
+          <!-- Countdown number -->
+          <div id="countdown-display" class="text-center hidden">
+            <p id="countdown-number" class="font-display text-[200px] md:text-[280px] font-bold text-gradient-gold leading-none"></p>
+          </div>
+
+          <!-- Winner reveal -->
+          <div id="winner-display" class="text-center hidden">
+            <p id="winner-prize-label" class="text-saffron/80 text-2xl md:text-3xl tracking-[0.2em] uppercase mb-6 font-display"></p>
+            <p id="winner-name" class="font-display text-6xl md:text-8xl lg:text-9xl font-bold text-gradient-gold mb-4"></p>
+            <p id="winner-ticket" class="text-cream/60 text-xl md:text-2xl tracking-wider"></p>
+            <button id="close-overlay" class="mt-12 px-8 py-3 border border-cream/30 text-cream/60 hover:border-saffron hover:text-saffron rounded transition-all text-lg tracking-wider">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // ===== STATE =====
+      interface Ticket {
+        name: string;
+        ticketNumber: string;
+        phone: string;
+      }
+
+      interface Winner {
+        name: string;
+        ticketNumber: string;
+      }
+
+      let participants: Ticket[] = [];
+      let remainingTickets: Ticket[] = [];
+      const winners: { first: Winner | null; second: Winner | null; third: Winner | null } = {
+        first: null,
+        second: null,
+        third: null,
+      };
+
+      const prizeLabels: Record<string, string> = {
+        first: '1st Prize — $750',
+        second: '2nd Prize — $500',
+        third: '3rd Prize — $250',
+      };
+
+      // ===== DOM ELEMENTS =====
+      const uploadArea = document.getElementById('upload-area')!;
+      const prizeArea = document.getElementById('prize-area')!;
+      const dropZone = document.getElementById('drop-zone')!;
+      const csvInput = document.getElementById('csv-input') as HTMLInputElement;
+      const participantCount = document.getElementById('participant-count')!;
+      const overlay = document.getElementById('overlay')!;
+      const effectsContainer = document.getElementById('effects-container')!;
+      const slotDisplay = document.getElementById('slot-display')!;
+      const slotPrizeLabel = document.getElementById('slot-prize-label')!;
+      const slotName = document.getElementById('slot-name')!;
+      const countdownDisplay = document.getElementById('countdown-display')!;
+      const countdownNumber = document.getElementById('countdown-number')!;
+      const winnerDisplay = document.getElementById('winner-display')!;
+      const winnerPrizeLabel = document.getElementById('winner-prize-label')!;
+      const winnerName = document.getElementById('winner-name')!;
+      const winnerTicket = document.getElementById('winner-ticket')!;
+      const closeOverlay = document.getElementById('close-overlay')!;
+      const prizeButtons = document.querySelectorAll('.prize-btn') as NodeListOf<HTMLButtonElement>;
+
+      // ===== CSV UPLOAD =====
+      dropZone.addEventListener('click', () => csvInput.click());
+      dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.classList.add('border-saffron', 'bg-saffron/5');
+      });
+      dropZone.addEventListener('dragleave', () => {
+        dropZone.classList.remove('border-saffron', 'bg-saffron/5');
+      });
+      dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('border-saffron', 'bg-saffron/5');
+        const file = e.dataTransfer?.files[0];
+        if (file && file.name.endsWith('.csv')) handleCSV(file);
+      });
+      csvInput.addEventListener('change', () => {
+        const file = csvInput.files?.[0];
+        if (file) handleCSV(file);
+      });
+
+      function handleCSV(file: File) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const text = e.target?.result as string;
+          parseCSV(text);
+        };
+        reader.readAsText(file);
+      }
+
+      function parseCSV(text: string) {
+        const lines = text.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+        if (lines.length < 2) return;
+
+        const header = lines[0].split(',').map(h => h.trim().toLowerCase().replace(/"/g, ''));
+
+        // Find column indices — flexible matching for Zeffy exports
+        const nameIdx = header.findIndex(h => h.includes('guest') || h.includes('name') || h.includes('first'));
+        const ticketIdx = header.findIndex(h => h.includes('ticket') || h.includes('order') || h.includes('#'));
+        const phoneIdx = header.findIndex(h => h.includes('phone') || h.includes('mobile') || h.includes('cell'));
+
+        participants = [];
+        for (let i = 1; i < lines.length; i++) {
+          const cols = parseCSVLine(lines[i]);
+          const name = cols[nameIdx >= 0 ? nameIdx : 0]?.trim().replace(/"/g, '') || '';
+          const ticketNumber = cols[ticketIdx >= 0 ? ticketIdx : 1]?.trim().replace(/"/g, '') || `#${i}`;
+          const phone = cols[phoneIdx >= 0 ? phoneIdx : 2]?.trim().replace(/"/g, '') || '';
+          if (name) {
+            participants.push({ name, ticketNumber, phone });
+          }
+        }
+
+        remainingTickets = [...participants];
+        const uniqueNames = new Set(participants.map(p => p.name)).size;
+
+        uploadArea.classList.add('hidden');
+        prizeArea.classList.remove('hidden');
+        participantCount.textContent = `${participants.length} tickets from ${uniqueNames} participants loaded`;
+        prizeButtons.forEach(btn => btn.disabled = false);
+      }
+
+      // Handle CSV fields with commas inside quotes
+      function parseCSVLine(line: string): string[] {
+        const result: string[] = [];
+        let current = '';
+        let inQuotes = false;
+        for (let i = 0; i < line.length; i++) {
+          const ch = line[i];
+          if (ch === '"') {
+            inQuotes = !inQuotes;
+          } else if (ch === ',' && !inQuotes) {
+            result.push(current);
+            current = '';
+          } else {
+            current += ch;
+          }
+        }
+        result.push(current);
+        return result;
+      }
+
+      // ===== PRIZE BUTTON CLICKS =====
+      prizeButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const prize = btn.dataset.prize as 'first' | 'second' | 'third';
+          if (winners[prize] || remainingTickets.length === 0) return;
+          startSelection(prize);
+        });
+      });
+
+      // ===== SELECTION FLOW =====
+      async function startSelection(prize: 'first' | 'second' | 'third') {
+        // Disable all buttons during selection
+        prizeButtons.forEach(b => b.disabled = true);
+
+        // Pick the winner ahead of time
+        const winnerIdx = Math.floor(Math.random() * remainingTickets.length);
+        const winningTicket = remainingTickets[winnerIdx];
+
+        // Show overlay
+        overlay.classList.remove('hidden');
+        slotDisplay.classList.remove('hidden');
+        countdownDisplay.classList.add('hidden');
+        winnerDisplay.classList.add('hidden');
+        slotPrizeLabel.textContent = prizeLabels[prize];
+
+        // Phase 1: Slot machine — fast name cycling (3 seconds), overlapping with countdown
+        await runSlotMachine(winningTicket.name, 3000);
+
+        // Phase 2: Countdown 5→1 with slowing slot
+        slotDisplay.classList.add('hidden');
+        await runCountdown();
+
+        // Phase 3: Winner reveal
+        countdownDisplay.classList.add('hidden');
+        revealWinner(prize, winningTicket);
+
+        // Remove winner's tickets
+        const winnerNameLower = winningTicket.name.toLowerCase();
+        remainingTickets = remainingTickets.filter(t => t.name.toLowerCase() !== winnerNameLower);
+        winners[prize] = { name: winningTicket.name, ticketNumber: winningTicket.ticketNumber };
+      }
+
+      async function runSlotMachine(finalName: string, duration: number) {
+        const names = participants.map(p => p.name);
+        const startTime = Date.now();
+
+        return new Promise<void>((resolve) => {
+          function tick() {
+            const elapsed = Date.now() - startTime;
+            if (elapsed >= duration) {
+              slotName.textContent = finalName;
+              slotName.style.filter = 'none';
+              resolve();
+              return;
+            }
+
+            // Speed slows down as time progresses
+            const progress = elapsed / duration;
+            const blurAmount = Math.max(0, (1 - progress) * 4);
+            slotName.style.filter = `blur(${blurAmount}px)`;
+
+            // Pick random name
+            const randomName = names[Math.floor(Math.random() * names.length)];
+            slotName.textContent = randomName;
+
+            // Interval increases as we slow down
+            const interval = 50 + progress * 150;
+            setTimeout(tick, interval);
+          }
+          tick();
+        });
+      }
+
+      async function runCountdown() {
+        countdownDisplay.classList.remove('hidden');
+
+        for (let i = 5; i >= 1; i--) {
+          countdownNumber.textContent = String(i);
+          countdownNumber.style.animation = 'none';
+          // Force reflow
+          void countdownNumber.offsetWidth;
+          countdownNumber.style.animation = 'countdown-pulse 0.9s ease-out forwards';
+          await sleep(1000);
+        }
+      }
+
+      function revealWinner(prize: 'first' | 'second' | 'third', ticket: Ticket) {
+        // Golden flash
+        const flash = document.createElement('div');
+        flash.style.cssText = 'position:fixed;inset:0;background:rgba(212,160,23,0.4);z-index:5;animation:golden-flash 0.8s ease-out forwards;pointer-events:none;';
+        overlay.appendChild(flash);
+        setTimeout(() => flash.remove(), 800);
+
+        // Show winner
+        winnerDisplay.classList.remove('hidden');
+        winnerDisplay.style.animation = 'winner-reveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards';
+        winnerPrizeLabel.textContent = prizeLabels[prize];
+        winnerName.textContent = ticket.name;
+        winnerTicket.textContent = `Ticket: ${ticket.ticketNumber}`;
+
+        // Massive celebration effects
+        triggerCelebration();
+      }
+
+      // ===== CLOSE OVERLAY =====
+      closeOverlay.addEventListener('click', () => {
+        overlay.classList.add('hidden');
+        winnerDisplay.classList.add('hidden');
+        winnerDisplay.style.animation = '';
+        effectsContainer.innerHTML = '';
+
+        // Update prize button states
+        prizeButtons.forEach(btn => {
+          const prize = btn.dataset.prize as 'first' | 'second' | 'third';
+          if (winners[prize]) {
+            btn.classList.add('completed');
+            const winnerSpan = btn.querySelector('.prize-winner') as HTMLElement;
+            const checkDiv = btn.querySelector('.prize-check') as HTMLElement;
+            winnerSpan.textContent = winners[prize]!.name;
+            winnerSpan.classList.remove('hidden');
+            checkDiv.classList.remove('hidden');
+            btn.disabled = true;
+          } else {
+            btn.disabled = false;
+          }
+        });
+
+        // Show winners summary if all 3 prizes are selected
+        if (winners.first && winners.second && winners.third) {
+          const summary = document.getElementById('winners-summary')!;
+          document.getElementById('summary-first')!.textContent = winners.first.name;
+          document.getElementById('summary-second')!.textContent = winners.second.name;
+          document.getElementById('summary-third')!.textContent = winners.third.name;
+          summary.classList.remove('hidden');
+        }
+      });
+
+      // ===== CELEBRATION EFFECTS =====
+      const confettiColors = ['#d4a017', '#f0c040', '#e8b829', '#fff5d4', '#ff9f43', '#ffd700', '#ff6b6b', '#e74c3c'];
+
+      function triggerCelebration() {
+        // Massive confetti burst
+        for (let i = 0; i < 80; i++) {
+          setTimeout(() => createCelebrationConfetti(), i * 20);
+        }
+        // Ongoing confetti
+        const confettiInterval = setInterval(() => {
+          for (let i = 0; i < 10; i++) createCelebrationConfetti();
+        }, 200);
+
+        // Multiple firework bursts
+        for (let i = 0; i < 5; i++) {
+          setTimeout(() => createCelebrationFirework(), i * 400 + 200);
+        }
+        const fireworkInterval = setInterval(() => createCelebrationFirework(), 1500);
+
+        // Stop after overlay is hidden
+        const checkStop = setInterval(() => {
+          if (overlay.classList.contains('hidden')) {
+            clearInterval(confettiInterval);
+            clearInterval(fireworkInterval);
+            clearInterval(checkStop);
+          }
+        }, 500);
+      }
+
+      function createCelebrationConfetti() {
+        const piece = document.createElement('div');
+        const size = Math.random() * 12 + 6;
+        const color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+        const left = Math.random() * 100;
+        const duration = Math.random() * 3 + 2;
+        const delay = Math.random() * 0.3;
+        const rotation = Math.random() * 360;
+        const shapes = ['circle', 'square', 'strip'];
+        const shape = shapes[Math.floor(Math.random() * shapes.length)];
+
+        piece.style.cssText = `
+          position: absolute;
+          top: -20px;
+          left: ${left}%;
+          width: ${shape === 'strip' ? size * 0.4 : size}px;
+          height: ${shape === 'circle' ? size : size * (shape === 'strip' ? 2.5 : 1)}px;
+          background: ${color};
+          border-radius: ${shape === 'circle' ? '50%' : shape === 'strip' ? '2px' : '1px'};
+          opacity: 0.9;
+          pointer-events: none;
+          animation: confetti-fall ${duration}s ${delay}s ease-in forwards;
+          transform: rotate(${rotation}deg);
+        `;
+        effectsContainer.appendChild(piece);
+        setTimeout(() => piece.remove(), (duration + delay) * 1000);
+      }
+
+      function createCelebrationFirework() {
+        const originX = 20 + Math.random() * 60;
+        const originY = 20 + Math.random() * 40;
+        const particleCount = 40 + Math.floor(Math.random() * 30);
+        const burstColors = ['#d4a017', '#f0c040', '#ff9f43', '#ffd700', '#fff5d4', '#e74c3c', '#f39c12', '#ff6b6b'];
+
+        // Trail first
+        const trail = document.createElement('div');
+        const startX = originX + (Math.random() - 0.5) * 5;
+        trail.style.cssText = `
+          position: absolute;
+          left: ${startX}%;
+          bottom: 0;
+          width: 3px;
+          height: 3px;
+          background: #ffd700;
+          border-radius: 50%;
+          pointer-events: none;
+          box-shadow: 0 0 6px #ffd700, 0 0 12px #d4a017;
+          animation: firework-trail-up 0.5s ease-out forwards;
+          --target-y: ${100 - originY}%;
+        `;
+        effectsContainer.appendChild(trail);
+
+        setTimeout(() => {
+          trail.remove();
+          for (let i = 0; i < particleCount; i++) {
+            const spark = document.createElement('div');
+            const angle = (Math.PI * 2 * i) / particleCount + (Math.random() - 0.5) * 0.5;
+            const velocity = 100 + Math.random() * 150;
+            const dx = Math.cos(angle) * velocity;
+            const dy = Math.sin(angle) * velocity;
+            const size = Math.random() * 5 + 2;
+            const color = burstColors[Math.floor(Math.random() * burstColors.length)];
+            const duration = 0.8 + Math.random() * 0.6;
+
+            spark.style.cssText = `
+              position: absolute;
+              left: ${originX}%;
+              top: ${originY}%;
+              width: ${size}px;
+              height: ${size}px;
+              background: ${color};
+              border-radius: 50%;
+              pointer-events: none;
+              box-shadow: 0 0 ${size * 3}px ${color};
+              animation: firework-burst ${duration}s ease-out forwards;
+              --dx: ${dx}px;
+              --dy: ${dy}px;
+            `;
+            effectsContainer.appendChild(spark);
+            setTimeout(() => spark.remove(), duration * 1000);
+          }
+        }, 450);
+      }
+
+      // ===== AMBIENT PARTICLES =====
+      function spawnAmbientParticle() {
+        const container = document.getElementById('ambient-particles');
+        if (!container) return;
+        const particle = document.createElement('div');
+        const size = Math.random() * 3 + 1;
+        const left = Math.random() * 100;
+        const duration = 8 + Math.random() * 12;
+
+        particle.style.cssText = `
+          position: absolute;
+          bottom: -10px;
+          left: ${left}%;
+          width: ${size}px;
+          height: ${size}px;
+          background: rgba(212, 160, 23, ${0.2 + Math.random() * 0.3});
+          border-radius: 50%;
+          pointer-events: none;
+          animation: ambient-rise ${duration}s linear forwards;
+        `;
+        container.appendChild(particle);
+        setTimeout(() => particle.remove(), duration * 1000);
+      }
+
+      setInterval(spawnAmbientParticle, 400);
+      for (let i = 0; i < 15; i++) setTimeout(spawnAmbientParticle, i * 200);
+
+      // ===== UTILS =====
+      function sleep(ms: number) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+    </script>
+
+    <style>
+      /* Prize buttons */
+      .prize-btn {
+        position: relative;
+        min-width: 220px;
+        padding: 1.5rem 2rem;
+        background: rgba(26, 26, 78, 0.6);
+        backdrop-filter: blur(8px);
+        border: 2px solid rgba(212, 160, 23, 0.3);
+        border-radius: 0.75rem;
+        text-align: center;
+        transition: all 0.3s;
+        cursor: pointer;
+        color: var(--color-cream);
+      }
+      .prize-btn:not(:disabled):hover {
+        border-color: var(--color-saffron);
+        box-shadow: 0 0 30px rgba(212, 160, 23, 0.3), 0 0 60px rgba(212, 160, 23, 0.1);
+        transform: scale(1.05);
+      }
+      .prize-btn:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+        transform: none;
+      }
+      .prize-btn.completed {
+        opacity: 1;
+        border-color: rgba(74, 222, 128, 0.4);
+        background: rgba(74, 222, 128, 0.05);
+      }
+      .prize-btn-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .prize-label {
+        font-family: var(--font-display);
+        font-size: 1.1rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--color-saffron);
+        margin-bottom: 0.25rem;
+      }
+      .prize-amount {
+        font-family: var(--font-display);
+        font-size: 2.5rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, var(--color-saffron), var(--color-gold-light), var(--color-amber));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .prize-check {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+      }
+
+      /* Animations */
+      @keyframes countdown-pulse {
+        0% { transform: scale(2.5); opacity: 0; }
+        30% { transform: scale(1); opacity: 1; }
+        80% { transform: scale(1); opacity: 1; }
+        100% { transform: scale(0.8); opacity: 0; }
+      }
+
+      @keyframes winner-reveal {
+        0% { transform: scale(0); opacity: 0; }
+        60% { transform: scale(1.1); }
+        100% { transform: scale(1); opacity: 1; }
+      }
+
+      @keyframes golden-flash {
+        0% { opacity: 1; }
+        100% { opacity: 0; }
+      }
+
+      @keyframes confetti-fall {
+        0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.9; }
+        50% { opacity: 1; }
+        100% { transform: translateY(100vh) rotate(720deg) scale(0.3); opacity: 0; }
+      }
+
+      @keyframes firework-burst {
+        0% { transform: translate(0, 0) scale(1); opacity: 1; }
+        100% { transform: translate(var(--dx), var(--dy)) scale(0); opacity: 0; }
+      }
+
+      @keyframes firework-trail-up {
+        0% { transform: translateY(0); opacity: 1; }
+        100% { transform: translateY(calc(-1 * var(--target-y))); opacity: 0.3; }
+      }
+
+      @keyframes ambient-rise {
+        0% { transform: translateY(0) translateX(0); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translateY(-100vh) translateX(calc((var(--random, 0.5) - 0.5) * 100px)); opacity: 0; }
+      }
+    </style>
+  </body>
+</html>
