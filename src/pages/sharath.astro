@@ -1,0 +1,438 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout title="Sharath A. Haridasan | The 18 Steps USA" description="Sharath A. Haridasan — Filmmaker, Vedic Scholar, and Spiritual Orator. Founder of The 18 Steps.">
+
+  <!-- ===== HERO ===== -->
+  <section class="relative min-h-[85vh] flex items-center overflow-hidden">
+    <div class="absolute inset-0">
+      <img src={`${base}/images/aesthetic/sharath_a_haridasan_1.jpg`} alt="Sharath A. Haridasan" class="w-full h-full object-cover object-top" />
+      <div class="absolute inset-0 bg-gradient-to-r from-cosmic via-cosmic/90 to-cosmic/40"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-cosmic via-transparent to-cosmic/30"></div>
+    </div>
+    <div class="absolute inset-0 bg-pattern-mandala opacity-20"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
+      <div class="max-w-2xl">
+        <p class="text-saffron/80 font-display tracking-[0.3em] uppercase text-sm mb-4 animate-fade-in">The 18 Steps USA Presents</p>
+        <h1 class="text-5xl md:text-7xl font-display font-bold text-gradient-gold mb-6 leading-tight animate-slide-up">Sharath A. Haridasan</h1>
+        <p class="text-cream/80 text-xl md:text-2xl font-serif italic mb-8 animate-slide-up" style="animation-delay: 0.2s;">Filmmaker, Vedic Scholar &amp; Spiritual Orator</p>
+        <div class="gold-divider !mx-0 animate-slide-up" style="animation-delay: 0.3s;"></div>
+        <p class="text-cream/60 text-lg leading-relaxed mt-6 max-w-xl animate-slide-up" style="animation-delay: 0.4s;">
+          A versatile filmmaker and Vedic scholar whose work masterfully integrates Indian philosophy with modern storytelling, inspiring audiences globally for over 30 years.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="py-24 bg-cosmic relative">
+    <div class="absolute inset-0 bg-pattern-mandala opacity-10"></div>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid lg:grid-cols-5 gap-12 items-center">
+        <div class="lg:col-span-3">
+          <h2 class="section-title text-4xl md:text-5xl">About Sharath</h2>
+          <div class="gold-divider !mx-0"></div>
+          <p class="text-cream/70 text-lg leading-relaxed mt-6">
+            Sharath A. Haridasan (aka Sarath Kumar Pandalanghat) is a versatile filmmaker, Vedic scholar, and spiritual orator whose work masterfully integrates Indian philosophy with modern storytelling. With over 30 years of experience directing commercials, feature films, and documentaries, coupled with his deep engagement with Sanatana Dharma, Sharath has established himself as a distinctive voice in both cinema and spiritual discourse.
+          </p>
+          <p class="text-cream/70 text-lg leading-relaxed mt-4">
+            His contributions span creative storytelling, scholarly interpretations of Vedic texts, and significant educational reforms, inspiring audiences globally. For the benefit of hundreds of people who became his initial audience, he started the YouTube channel called The 18 Steps in 2018.
+          </p>
+          <p class="text-cream/70 text-lg leading-relaxed mt-4">
+            Academically, Sharath holds a degree in Zoology from Government Victoria College, Palakkad, alongside his postgraduate qualification in Mass Communication from the Manipal Institute of Communication, blending scientific rigor with creative and spiritual pursuits.
+          </p>
+        </div>
+        <div class="lg:col-span-2">
+          <div class="relative">
+            <img src={`${base}/images/aesthetic/sharath_a_haridasan_2.jpg`} alt="Sharath A. Haridasan" class="rounded-2xl border-2 border-saffron/30 shadow-2xl shadow-saffron/10 w-full" />
+            <div class="absolute -inset-1 rounded-2xl border border-saffron/10 -z-10"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FILMMAKING CAREER ===== -->
+  <section class="py-24 bg-gradient-to-b from-cosmic to-cosmic-light/10 relative">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="section-title text-4xl md:text-5xl">Filmmaking Career</h2>
+        <div class="gold-divider"></div>
+        <p class="text-cream/60 mt-6 max-w-3xl mx-auto text-lg">Over three decades of cinematic excellence spanning commercials, feature films, and groundbreaking documentaries.</p>
+      </div>
+
+      <!-- Career Timeline -->
+      <div class="grid md:grid-cols-2 gap-8 mb-16">
+        <div class="card-dark group hover:border-saffron/40 transition-all duration-300">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-full bg-saffron/20 flex items-center justify-center">
+              <svg class="w-5 h-5 text-saffron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+            </div>
+            <h3 class="text-saffron font-display text-xl font-semibold">Commercial Directing</h3>
+          </div>
+          <p class="text-cream/60 leading-relaxed">
+            Began directing in 2001 as an independent creative director and TVC director in Chennai. His landmark achievement was directing Malayalam cinema icon <strong class="text-cream/80">Mammootty's first Kalyan Jewellers TVC</strong> in 2003, followed by 17 additional campaigns.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            {['AR Rahman', 'Royal Enfield', 'Tanishq', 'Infosys', 'NAC Jewellers', 'SHARP', 'DAMAC'].map(brand => (
+              <span class="text-xs px-3 py-1 rounded-full border border-saffron/20 text-cream/50">{brand}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="card-dark group hover:border-saffron/40 transition-all duration-300">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-full bg-saffron/20 flex items-center justify-center">
+              <svg class="w-5 h-5 text-saffron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+            </div>
+            <h3 class="text-saffron font-display text-xl font-semibold">Production Houses</h3>
+          </div>
+          <p class="text-cream/60 leading-relaxed">
+            Founded <strong class="text-cream/80">Cinetra Media FZE</strong> in Dubai (2007) and <strong class="text-cream/80">Blue Planet Cinema</strong> in India. Directed commercials for high-profile international clients including Swiss Arabian Perfumes, Dubai Road Transport Authority, and Dubai International Film Festival.
+          </p>
+          <p class="text-cream/50 text-sm mt-4 italic">Music videos for Magnasound, Saregama HMV, MTV, and Channel V.</p>
+        </div>
+      </div>
+
+      <!-- Films -->
+      <div class="mb-16">
+        <h3 class="font-display text-2xl text-gradient-gold font-semibold mb-8 text-center">Feature Films &amp; Cinematic Works</h3>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="card-dark text-center hover:border-saffron/40 transition-all duration-300">
+            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-saffron/30 to-amber/20 flex items-center justify-center mx-auto mb-4">
+              <span class="text-saffron font-display font-bold text-lg">🏆</span>
+            </div>
+            <h4 class="text-cream font-semibold text-lg mb-2">The Dominion</h4>
+            <p class="text-cream/40 text-sm mb-2">1998 · Short Film</p>
+            <p class="text-cream/60 text-sm">Best Experimental Film award at the National Telefest.</p>
+          </div>
+          <div class="card-dark text-center hover:border-saffron/40 transition-all duration-300">
+            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-saffron/30 to-amber/20 flex items-center justify-center mx-auto mb-4">
+              <span class="text-saffron font-display font-bold text-lg">🎬</span>
+            </div>
+            <h4 class="text-cream font-semibold text-lg mb-2">Ananthapurathu Veedu</h4>
+            <p class="text-cream/40 text-sm mb-2">2010 · Tamil Thriller</p>
+            <p class="text-cream/60 text-sm">Co-wrote the screenplay, produced by Shankar's S Pictures.</p>
+          </div>
+          <div class="card-dark text-center hover:border-saffron/40 transition-all duration-300">
+            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-saffron/30 to-amber/20 flex items-center justify-center mx-auto mb-4">
+              <span class="text-saffron font-display font-bold text-lg">🎥</span>
+            </div>
+            <h4 class="text-cream font-semibold text-lg mb-2">Salala Mobiles</h4>
+            <p class="text-cream/40 text-sm mb-2">2013–14 · Malayalam Feature</p>
+            <p class="text-cream/60 text-sm">Wrote and directed. Starring Dulquer Salmaan, Nazriya Nazim, and Santhanam.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DOCUMENTARIES ===== -->
+  <section class="py-24 bg-cosmic relative">
+    <div class="absolute inset-0 bg-pattern-mandala opacity-10"></div>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center mb-16">
+        <h2 class="section-title text-4xl md:text-5xl">A Dedicated Documentarian</h2>
+        <div class="gold-divider"></div>
+        <p class="text-cream/60 mt-6 max-w-3xl mx-auto text-lg">Collaborations with National Geographic and Discovery Channel, and a body of work preserving India's spiritual and cultural heritage.</p>
+      </div>
+
+      <div class="space-y-12">
+        <!-- Akhilam Madhuram -->
+        <div class="card-dark hover:border-saffron/40 transition-all duration-300">
+          <div class="grid md:grid-cols-3 gap-8 items-center">
+            <div class="md:col-span-2">
+              <h3 class="text-saffron font-display text-2xl font-semibold mb-4">Akhilam Madhuram — The Saga of Guruvayur</h3>
+              <p class="text-cream/60 leading-relaxed">
+                An ongoing masterpiece documentary series celebrating the heritage of Guruvayur and Lord Guruvayurappan. Each episode is a testament to the devotion and selfless service of his team. The deity, temple, and temple town are more than the lores and legends. Sharath brings out the essence of the <em>athma swaroopam</em>, the <em>guru</em> (main) <em>vayu</em> (life force) which are subtly hidden in the various treatises of <em>mahabhaktas</em>.
+              </p>
+              <p class="text-cream/50 text-sm mt-3">He also created social media outlets for Guruvayur Devaswom and was instrumental in bringing out the daily <em>Ucchapooja Alankara Varnana</em>.</p>
+            </div>
+            <div>
+              <img src={`${base}/images/sharath/akhilam_madhuram.jpg`} alt="Akhilam Madhuram - The Saga of Guruvayur" class="rounded-xl border border-saffron/20 w-full" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Art of Dust -->
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="card-dark hover:border-saffron/40 transition-all duration-300">
+            <div class="relative mb-4 rounded-xl overflow-hidden">
+              <img src={`${base}/images/sharath/art_of_dust.jpg`} alt="Art of Dust" class="w-full h-48 object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-t from-cosmic/80 to-transparent"></div>
+              <div class="absolute bottom-3 left-4">
+                <span class="text-xs px-3 py-1 rounded-full bg-saffron/20 text-saffron border border-saffron/30">Amazon Prime</span>
+              </div>
+            </div>
+            <h3 class="text-saffron font-display text-xl font-semibold mb-3">Art of Dust</h3>
+            <p class="text-cream/60 text-sm leading-relaxed">
+              A documentary on Kerala's <em>Kalamezhuthu Paattu</em>, a dwindling ritual combining song, art, and dance. Available on Amazon Prime Worldwide. The protagonist Sri Kallatt Manikandan attests that as a result of this work, more temples and families have taken renewed interest in this auspicious tradition.
+            </p>
+          </div>
+
+          <div class="card-dark hover:border-saffron/40 transition-all duration-300">
+            <div class="relative mb-4 rounded-xl overflow-hidden h-48">
+              <img src={`${base}/images/sharath/kathakali.jpg`} alt="Traditional art form" class="w-full h-full object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-t from-cosmic/80 to-transparent"></div>
+              <div class="absolute bottom-3 left-4">
+                <span class="text-xs px-3 py-1 rounded-full bg-saffron/20 text-saffron border border-saffron/30">2007</span>
+              </div>
+            </div>
+            <h3 class="text-saffron font-display text-xl font-semibold mb-3">The Ritual of Fire</h3>
+            <p class="text-cream/60 text-sm leading-relaxed">
+              <em>Saagnikam Athiraathram</em> — captures a thousands-of-years-old Vedic ritual, a massive and several-days-long ceremony still performed in Kerala. Not just a record of events, but an inquisitive exploration informing the lay person the subtle principles behind each ritual.
+            </p>
+          </div>
+        </div>
+
+        <!-- More documentaries -->
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="card-dark hover:border-saffron/40 transition-all duration-300">
+            <div class="relative mb-4 rounded-xl overflow-hidden h-44">
+              <img src={`${base}/images/sharath/sir_chettur_sankaran_nair.jpg`} alt="Sir Chettur Sankaran Nair documentary" class="w-full h-full object-cover" />
+            </div>
+            <h4 class="text-cream font-semibold text-lg mb-2">Sir Chettur Sankaran Nair</h4>
+            <p class="text-cream/40 text-sm mb-3">Biographical Documentary</p>
+            <p class="text-cream/60 text-sm">A comprehensive record of the life of an almost forgotten patriot. A biography that brings out his character and the lofty ideals he stood for.</p>
+          </div>
+          <div class="card-dark hover:border-saffron/40 transition-all duration-300 text-center">
+            <div class="relative mb-4 rounded-xl overflow-hidden bg-gradient-to-br from-royal/20 to-cosmic-light/20 h-44 flex items-center justify-center">
+              <div class="text-center">
+                <svg class="w-12 h-12 text-saffron/40 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
+                <p class="text-cream/30 text-xs font-display tracking-wider">In Production</p>
+              </div>
+            </div>
+            <h4 class="text-cream font-semibold text-lg mb-2">The Luminous Brush</h4>
+            <p class="text-cream/40 text-sm mb-3">In Production</p>
+            <p class="text-cream/60 text-sm">A documentary exploring the legacy of the legendary artist Raja Ravi Varma. Currently in production.</p>
+          </div>
+          <div class="card-dark hover:border-saffron/40 transition-all duration-300">
+            <div class="relative mb-4 rounded-xl overflow-hidden h-44">
+              <img src={`${base}/images/sharath/stage_on_fire.jpg`} alt="Stage on Fire - Kottakkal Devadasan" class="w-full h-full object-cover" />
+            </div>
+            <h4 class="text-cream font-semibold text-lg mb-2">Stage on Fire</h4>
+            <p class="text-cream/40 text-sm mb-3">Post-Production</p>
+            <p class="text-cream/60 text-sm">The Life and Art of Kottakkal Devadasan — a biographical documentary on the Kathakali maestro, disciple of legend Kottakkal Gopi Asan.</p>
+          </div>
+        </div>
+
+        <!-- Producer -->
+        <div class="text-center">
+          <p class="text-cream/50 text-sm">
+            <span class="text-cream/70 font-semibold">As Producer:</span> Oppana (2019) · Kakkakeni (2024) · Remarkable Maestro of the Era (2023, documentary on veteran Baul musician Tarun Khyapa Baul of Kolkata)
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SPIRITUAL SCHOLARSHIP ===== -->
+  <section class="py-24 bg-gradient-to-b from-cosmic to-cosmic-light/10 relative">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="section-title text-4xl md:text-5xl">Spiritual Scholarship &amp; Oratory</h2>
+        <div class="gold-divider"></div>
+      </div>
+
+      <div class="grid lg:grid-cols-5 gap-12 items-start">
+        <div class="lg:col-span-3 space-y-6">
+          <p class="text-cream/70 text-lg leading-relaxed">
+            Sharath is a distinguished Vedic scholar with a deep passion for Indian philosophy, having studied Vedic scriptures, Upanishads, the Puranas, and more. Proficient in <strong class="text-cream/90">Sanskrit, Malayalam, Tamil, Hindi, and English</strong>, he delivers lucid and insightful discourses on Sanatana Dharma, spiritual sadhana, rituals, history, biographical narratives, and literature through his popular YouTube channel, The 18 Steps.
+          </p>
+          <p class="text-cream/70 text-lg leading-relaxed">
+            He is a much sought-after speaker at various temples, organizations, and <em>satsangas</em>. He is routinely invited for discourses at <strong class="text-cream/90">Guruvayur, Mammiyur, Muthuvara Mahadeva temple, Kalpathy Viswanatha temple, Mayur Vihar Ayyappa temple</strong> and more.
+          </p>
+          <p class="text-cream/70 text-lg leading-relaxed">
+            His talks are widely appreciated for their clarity and ability to make ancient wisdom accessible to modern audiences. He insists that the discourses are not intended to be informative, but meant for being <em>transformative</em>. He presents these as <em>katha-kathana yajnas</em>, rather than as traditional <em>parayana</em>, so that the stories and hidden principles encoded in the Sanskrit verses are more accessible to everyone.
+          </p>
+
+          <!-- Vivekachudamani quote -->
+          <div class="card-dark border-saffron/30 mt-8">
+            <p class="text-cream/60 italic text-sm mb-3">He often quotes Adi Sankaracharya, emphasizing the importance of paying attention to one's Inner Self:</p>
+            <blockquote class="text-saffron/90 font-serif text-lg leading-relaxed">
+              "moksakaranasaamagryaam bhaktireva gariyasi |<br/>
+              svasvarupaanusandhaanam bhaktirityabhidhiyate ||"
+            </blockquote>
+            <p class="text-cream/40 text-sm mt-2 text-right">— Vivekacudamani: 32</p>
+          </div>
+        </div>
+
+        <div class="lg:col-span-2">
+          <!-- Courses -->
+          <div class="card-dark border-saffron/20">
+            <h3 class="text-saffron font-display text-xl font-semibold mb-6">Courses &amp; Sadhanas</h3>
+            <p class="text-cream/50 text-sm mb-4">Online &amp; offline courses, webinars, and workshops:</p>
+            <ul class="space-y-3">
+              {[
+                'Sri Vishnu Sahasranama Sadhana',
+                'Devi Mahathmya Sadhana',
+                'Vidya Vijaya Sadhana for Students',
+                'Japayogam | How to Chant',
+                'Narayana Kavacha Sadhana',
+                'Narayaneeya Saadhana',
+                'Ganesha Sadhana for Householders',
+                'Sri Mahadeva (Shiva) Sadhana',
+              ].map(course => (
+                <li class="flex items-start gap-3 text-cream/60 text-sm">
+                  <svg class="w-4 h-4 text-saffron mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                  <span>{course}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Cultural contributions -->
+          <div class="card-dark border-saffron/20 mt-6">
+            <h3 class="text-saffron font-display text-xl font-semibold mb-4">Cultural Contributions</h3>
+            <p class="text-cream/60 text-sm leading-relaxed">
+              Appointed as one of three expert committee members under the <strong class="text-cream/80">Kerala Devaswom Recruitment Board (KDRB)</strong>, tasked with restructuring the Tantra Vidya curriculum across Kerala's 41 Kshethra Tantra Vidya schools — preserving and modernizing traditional knowledge systems.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BOOKS ===== -->
+  <section class="py-24 bg-cosmic relative">
+    <div class="absolute inset-0 bg-pattern-mandala opacity-10"></div>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center mb-16">
+        <h2 class="section-title text-4xl md:text-5xl">The Author</h2>
+        <div class="gold-divider"></div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Book 1 -->
+        <div class="card-dark group hover:border-saffron/40 transition-all duration-300">
+          <div class="relative mb-6 rounded-xl overflow-hidden">
+            <img src={`${base}/images/sharath/krishnas_whisper.jpg`} alt="Krishna's Whisper: 18 Meditations" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500" />
+          </div>
+          <h3 class="text-saffron font-display text-lg font-semibold mb-2">Krishna's Whisper: 18 Meditations for a Life of Purpose and Prosperity</h3>
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="text-xs px-2 py-1 rounded-full bg-saffron/10 text-saffron border border-saffron/20">World Book Fair 2024</span>
+            <span class="text-xs px-2 py-1 rounded-full bg-saffron/10 text-saffron border border-saffron/20">NBT Hall of Fame 2025</span>
+          </div>
+          <p class="text-cream/60 text-sm leading-relaxed">
+            Distills complex philosophical concepts into practical, inspiring meditations. From the sacred Rasa dance to the lifting of Govardhan Hill, from the friendship with Arjuna to the defeat of the serpent Kaliya — these 18 meditations illuminate pathways to self-discovery, inner growth, and spiritual enlightenment.
+          </p>
+        </div>
+
+        <!-- Book 2 -->
+        <div class="card-dark group hover:border-saffron/40 transition-all duration-300">
+          <div class="relative mb-6 rounded-xl overflow-hidden">
+            <img src={`${base}/images/books/51_zen_stories_to_wake_up.jpg`} alt="51 Zen Stories to Wake Up" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500" />
+          </div>
+          <h3 class="text-saffron font-display text-lg font-semibold mb-2">51 Zen Stories to Wake Up</h3>
+          <p class="text-cream/60 text-sm leading-relaxed mt-3">
+            Sharath highlights Zen wisdom through various short stories. Whether it's the dance of a flame, the solitude of a mountain spring, or the unspoken wisdom of a hidden blossom, these tales capture vast meanings in brief encounters.
+          </p>
+        </div>
+
+        <!-- Book 3 -->
+        <div class="card-dark group hover:border-saffron/40 transition-all duration-300">
+          <div class="relative mb-6 rounded-xl overflow-hidden">
+            <img src={`${base}/images/books/a_very_simple_guide_to_bhagavad_gita.jpg`} alt="A Very Simple Guide to Bhagavad Gita" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500" />
+          </div>
+          <h3 class="text-saffron font-display text-lg font-semibold mb-2">A Very Simple Guide to the Bhagavad Gita</h3>
+          <p class="text-cream/60 text-sm leading-relaxed mt-3">
+            Offers the current generation a guide on how to find clarity in the Life's battlefield. "In this unadorned, direct exploration of the ancient text, the author takes you through 18 practices distilled from the Gita's teachings. This isn't a book of lofty philosophy; it's a manual for living."
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HUMANITARIAN / GIVING ===== -->
+  <section class="py-24 bg-gradient-to-b from-cosmic to-cosmic-light/10 relative">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="section-title text-4xl md:text-5xl">Giving without Givership</h2>
+        <div class="gold-divider"></div>
+        <p class="text-cream/60 mt-6 max-w-2xl mx-auto text-lg">
+          Sharath is known for his skepticism towards exhibition of benevolence. A few of the activities he contributes to:
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        {[
+          { title: 'Agama-Veda Students', desc: 'Recurring monthly payments supporting students of traditional Vedic learning.' },
+          { title: "Girls' Orphanages", desc: 'Monthly support to two girls\' orphanages in Kerala.' },
+          { title: 'Army Widows', desc: 'Recurring monthly payments to widows of India Army soldiers.' },
+          { title: 'Medical Expenses', desc: 'Support towards medical expenses of elderly patients and newborns.' },
+          { title: 'Annadanam', desc: 'Contributions towards annadanam at various temples and organizations.' },
+          { title: 'Temple Revival', desc: 'Support towards revival and upkeep of various temples and rituals.' },
+        ].map(item => (
+          <div class="card-dark hover:border-saffron/40 transition-all duration-300">
+            <h4 class="text-cream font-semibold mb-2">{item.title}</h4>
+            <p class="text-cream/50 text-sm">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center mt-12">
+        <p class="text-cream/40 font-serif italic text-lg">sarvam brahmaarpanam astu</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PERSONAL / SYNTHESIS ===== -->
+  <section class="py-24 bg-cosmic relative">
+    <div class="absolute inset-0 bg-pattern-mandala opacity-10"></div>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <h2 class="section-title text-4xl md:text-5xl">A Unique Synthesis</h2>
+      <div class="gold-divider"></div>
+      <p class="text-cream/70 text-lg leading-relaxed mt-8">
+        In a household with brilliant academicians, Sharath and his siblings took up spiritual sadhanas at a very young age along with their regular schooling. He used to spend his free time exploring places around Palakkad, mostly on his bicycle. Temple festivals, Kathakali, voracious reading, and folk lore were catalysts to the young boy's development.
+      </p>
+      <p class="text-cream/70 text-lg leading-relaxed mt-4">
+        On his spiritual pursuits, he was often led and misled by various influencers. With the grace of God, he was able to overcome difficulties through great <em>mahatmas</em> such as <strong class="text-cream/90">Nirmalananda Giri Swami</strong> and <strong class="text-cream/90">Malliyoor Parameswaran Nampoothiri</strong>. His travels far and wide provided him with rich and sometimes formidable experiences, which he used as life lessons, further deepening his spiritual outlook.
+      </p>
+      <p class="text-cream/70 text-lg leading-relaxed mt-4">
+        Through these direct experiences and the wisdom gained through the scriptures, he engages selflessly to guide and transform his fellow-beings.
+      </p>
+      <p class="text-cream/50 mt-6">He currently resides in Sekharipuram, near Kalpathy in Palakkad with his wife and children.</p>
+
+      <div class="card-dark max-w-xl mx-auto mt-12 border-saffron/30">
+        <img src={`${base}/images/sharath/paalpayasam.jpg`} alt="Paalpayasam" class="w-24 h-auto mx-auto mb-4" />
+        <p class="text-cream/70 font-serif italic text-lg leading-relaxed">
+          "Let us keep the vessel of our minds clean and ready, so that when the Lord comes to offer to us <em>paalpayasam</em>, it is ready to accept!"
+        </p>
+        <p class="text-cream/40 text-sm mt-3">— Sharath A. Haridasan</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONNECT ===== -->
+  <section class="py-24 bg-gradient-to-b from-cosmic to-cosmic-light/20 relative">
+    <div class="absolute inset-0 bg-pattern-mandala opacity-30"></div>
+    <div class="max-w-3xl mx-auto px-4 text-center relative z-10">
+      <h2 class="section-title text-3xl md:text-4xl">Follow The 18 Steps</h2>
+      <div class="gold-divider"></div>
+      <p class="text-cream/60 text-lg mt-6 mb-10">105,000+ subscribers · 600+ original videos</p>
+
+      <div class="flex flex-wrap justify-center gap-6">
+        <a href="https://www.youtube.com/the18steps" target="_blank" rel="noopener noreferrer" class="card-dark flex items-center gap-4 px-8 py-5 hover:border-saffron/50 transition-all duration-300 group">
+          <svg class="w-8 h-8 text-red-500" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          <span class="text-cream/80 group-hover:text-saffron transition-colors">YouTube</span>
+        </a>
+        <a href="https://www.instagram.com/the18steps" target="_blank" rel="noopener noreferrer" class="card-dark flex items-center gap-4 px-8 py-5 hover:border-saffron/50 transition-all duration-300 group">
+          <svg class="w-8 h-8 text-pink-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          <span class="text-cream/80 group-hover:text-saffron transition-colors">Instagram</span>
+        </a>
+        <a href="https://www.facebook.com/the18steps" target="_blank" rel="noopener noreferrer" class="card-dark flex items-center gap-4 px-8 py-5 hover:border-saffron/50 transition-all duration-300 group">
+          <svg class="w-8 h-8 text-blue-500" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          <span class="text-cream/80 group-hover:text-saffron transition-colors">Facebook</span>
+        </a>
+      </div>
+
+      <div class="mt-16">
+        <a href={`${base}/`} class="btn-primary px-10 py-4">Back to Home</a>
+      </div>
+    </div>
+  </section>
+
+</Layout>

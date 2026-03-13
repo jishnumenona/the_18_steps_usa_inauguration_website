@@ -136,7 +136,7 @@ const paintings = [
             </div>
             <p class="text-cream/50 text-sm leading-relaxed mb-4">{painting.description}</p>
             <a
-              href={`mailto:info@the18stepsusa.org?subject=Inquiry about painting: ${painting.title}&body=Hi, I am interested in purchasing "${painting.title}" (${painting.price}). Please share more details.`}
+              href={`mailto:the18stepusa@gmail.com?subject=Inquiry about painting: ${painting.title}&body=Hi, I am interested in purchasing "${painting.title}" (${painting.price}). Please share more details.`}
               class="btn-outline text-xs text-center py-2 px-4 block"
             >
               Contact for Purchase
@@ -147,7 +147,7 @@ const paintings = [
 
       <div class="text-center mt-16 space-y-4">
         <p class="text-cream/50 text-sm">
-          Interested in commissioning a custom piece? <a href="mailto:info@the18stepsusa.org" class="text-saffron hover:underline">Contact us</a>
+          Interested in commissioning a custom piece? <a href="mailto:the18stepusa@gmail.com" class="text-saffron hover:underline">Contact us</a>
         </p>
         <p class="text-cream/30 text-xs italic">
           * Actual painting images will be updated soon. Placeholders shown above.
@@ -212,7 +212,7 @@ const paintings = [
       if (lightboxPrice) lightboxPrice.textContent = price;
       if (lightboxDesc) lightboxDesc.textContent = desc;
       if (lightboxContact) {
-        lightboxContact.href = `mailto:info@the18stepsusa.org?subject=Inquiry about painting: ${title}&body=Hi, I am interested in purchasing "${title}" (${price}). Please share more details.`;
+        lightboxContact.href = `mailto:the18stepusa@gmail.com?subject=Inquiry about painting: ${title}&body=Hi, I am interested in purchasing "${title}" (${price}). Please share more details.`;
       }
       lightbox?.classList.remove('hidden');
       lightbox?.classList.add('flex');
