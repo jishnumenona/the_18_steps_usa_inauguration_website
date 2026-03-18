@@ -137,7 +137,7 @@ const base = import.meta.env.BASE_URL;
       <div class="text-center mb-16">
         <h2 class="section-title text-4xl md:text-5xl">A Dedicated Documentarian</h2>
         <div class="gold-divider"></div>
-        <p class="text-cream/60 mt-6 max-w-3xl mx-auto text-lg">Collaborations with National Geographic and Discovery Channel, and a body of work preserving India's spiritual and cultural heritage.</p>
+        <p class="text-cream/60 mt-6 max-w-3xl mx-auto text-lg">Collaborations with National Geographic and Discovery Channel, and a growing body of work preserving India's spiritual and cultural heritage.</p>
       </div>
 
       <div class="space-y-12">
@@ -161,7 +161,7 @@ const base = import.meta.env.BASE_URL;
         <div class="grid md:grid-cols-2 gap-8">
           <div class="card-dark hover:border-saffron/40 transition-all duration-300">
             <div class="relative mb-4 rounded-xl overflow-hidden">
-              <img src={`${base}/images/sharath/art_of_dust.jpg`} alt="Art of Dust" class="w-full h-48 object-cover" />
+              <img src={`${base}/images/sharath/art_of_dust.jpg`} alt="Art of Dust" class="w-full h-48 object-cover object-top" />
               <div class="absolute inset-0 bg-gradient-to-t from-cosmic/80 to-transparent"></div>
               <div class="absolute bottom-3 left-4">
                 <span class="text-xs px-3 py-1 rounded-full bg-saffron/20 text-saffron border border-saffron/30">Amazon Prime</span>
@@ -174,11 +174,10 @@ const base = import.meta.env.BASE_URL;
           </div>
 
           <div class="card-dark hover:border-saffron/40 transition-all duration-300">
-            <div class="relative mb-4 rounded-xl overflow-hidden h-48">
-              <img src={`${base}/images/sharath/kathakali.jpg`} alt="Traditional art form" class="w-full h-full object-cover" />
-              <div class="absolute inset-0 bg-gradient-to-t from-cosmic/80 to-transparent"></div>
-              <div class="absolute bottom-3 left-4">
-                <span class="text-xs px-3 py-1 rounded-full bg-saffron/20 text-saffron border border-saffron/30">2007</span>
+            <div class="relative mb-4 rounded-xl overflow-hidden h-48 bg-gradient-to-br from-royal/20 to-cosmic-light/20 flex items-center justify-center">
+              <div class="text-center">
+                <svg class="w-14 h-14 text-saffron/50 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z" /></svg>
+                <p class="text-cream/30 text-xs font-display tracking-wider">2007</p>
               </div>
             </div>
             <h3 class="text-saffron font-display text-xl font-semibold mb-3">The Ritual of Fire</h3>
@@ -211,7 +210,7 @@ const base = import.meta.env.BASE_URL;
           </div>
           <div class="card-dark hover:border-saffron/40 transition-all duration-300">
             <div class="relative mb-4 rounded-xl overflow-hidden h-44">
-              <img src={`${base}/images/sharath/stage_on_fire.jpg`} alt="Stage on Fire - Kottakkal Devadasan" class="w-full h-full object-cover" />
+              <img src={`${base}/images/sharath/stage_on_fire.jpg`} alt="Stage on Fire - Kottakkal Devadasan" class="w-full h-full object-cover object-top" />
             </div>
             <h4 class="text-cream font-semibold text-lg mb-2">Stage on Fire</h4>
             <p class="text-cream/40 text-sm mb-3">Post-Production</p>
@@ -309,7 +308,7 @@ const base = import.meta.env.BASE_URL;
         <!-- Book 1 -->
         <div class="card-dark group hover:border-saffron/40 transition-all duration-300">
           <div class="relative mb-6 rounded-xl overflow-hidden">
-            <img src={`${base}/images/sharath/krishnas_whisper.jpg`} alt="Krishna's Whisper: 18 Meditations" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500" />
+            <img src={`${base}/images/sharath/krishnas_whisper.jpg`} alt="Krishna's Whisper: 18 Meditations" class="w-full h-72 object-cover object-top group-hover:scale-105 transition-transform duration-500" />
           </div>
           <h3 class="text-saffron font-display text-lg font-semibold mb-2">Krishna's Whisper: 18 Meditations for a Life of Purpose and Prosperity</h3>
           <div class="flex flex-wrap gap-2 mb-3">
@@ -324,7 +323,7 @@ const base = import.meta.env.BASE_URL;
         <!-- Book 2 -->
         <div class="card-dark group hover:border-saffron/40 transition-all duration-300">
           <div class="relative mb-6 rounded-xl overflow-hidden">
-            <img src={`${base}/images/books/51_zen_stories_to_wake_up.jpg`} alt="51 Zen Stories to Wake Up" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500" />
+            <img src={`${base}/images/books/51_zen_stories_to_wake_up.jpg`} alt="51 Zen Stories to Wake Up" class="w-full h-72 object-cover object-top group-hover:scale-105 transition-transform duration-500" />
           </div>
           <h3 class="text-saffron font-display text-lg font-semibold mb-2">51 Zen Stories to Wake Up</h3>
           <p class="text-cream/60 text-sm leading-relaxed mt-3">
@@ -335,7 +334,7 @@ const base = import.meta.env.BASE_URL;
         <!-- Book 3 -->
         <div class="card-dark group hover:border-saffron/40 transition-all duration-300">
           <div class="relative mb-6 rounded-xl overflow-hidden">
-            <img src={`${base}/images/books/a_very_simple_guide_to_bhagavad_gita.jpg`} alt="A Very Simple Guide to Bhagavad Gita" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500" />
+            <img src={`${base}/images/books/a_very_simple_guide_to_bhagavad_gita.jpg`} alt="A Very Simple Guide to Bhagavad Gita" class="w-full h-72 object-cover object-top group-hover:scale-105 transition-transform duration-500" />
           </div>
           <h3 class="text-saffron font-display text-lg font-semibold mb-2">A Very Simple Guide to the Bhagavad Gita</h3>
           <p class="text-cream/60 text-sm leading-relaxed mt-3">
@@ -353,7 +352,7 @@ const base = import.meta.env.BASE_URL;
         <h2 class="section-title text-4xl md:text-5xl">Giving without Givership</h2>
         <div class="gold-divider"></div>
         <p class="text-cream/60 mt-6 max-w-2xl mx-auto text-lg">
-          Sharath is known for his skepticism towards exhibition of benevolence. A few of the activities he contributes to:
+          Sharath is known for his skepticism towards exhibition of benevolence. However, a few are listed here to inspire the reader!
         </p>
       </div>
 
@@ -397,7 +396,7 @@ const base = import.meta.env.BASE_URL;
       <p class="text-cream/50 mt-6">He currently resides in Sekharipuram, near Kalpathy in Palakkad with his wife and children.</p>
 
       <div class="card-dark max-w-xl mx-auto mt-12 border-saffron/30">
-        <img src={`${base}/images/sharath/paalpayasam.jpg`} alt="Paalpayasam" class="w-24 h-auto mx-auto mb-4" />
+        <img src={`${base}/images/sharath/paalpayasam.jpg`} alt="Paalpayasam" class="w-24 h-auto mx-auto mb-4" style="mask-image: radial-gradient(ellipse 90% 85% at 50% 50%, black 50%, transparent 100%);" />
         <p class="text-cream/70 font-serif italic text-lg leading-relaxed">
           "Let us keep the vessel of our minds clean and ready, so that when the Lord comes to offer to us <em>paalpayasam</em>, it is ready to accept!"
         </p>

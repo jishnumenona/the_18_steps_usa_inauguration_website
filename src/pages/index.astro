@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 const base = import.meta.env.BASE_URL;
+const showRaffle = false; // Set to true to re-enable the raffle section
 ---
 
 <Layout title="The 18 Steps USA | Inauguration Ceremony - June 6, 2026">
@@ -369,7 +370,8 @@ const base = import.meta.env.BASE_URL;
     </div>
   </section>
 
-  <!-- ===== RAFFLE SECTION ===== -->
+  {/* ===== RAFFLE SECTION (toggle showRaffle in frontmatter to re-enable) ===== */}
+  {showRaffle && (
   <section class="py-24 bg-cosmic relative">
     <div class="absolute inset-0 bg-pattern-mandala opacity-30"></div>
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -379,11 +381,9 @@ const base = import.meta.env.BASE_URL;
         <p class="section-subtitle mt-4 mb-12">Exciting Raffle Draw at the Event</p>
 
         <div class="max-w-2xl mx-auto relative">
-          <!-- Animated sparkle/firework particles -->
           <div class="absolute -inset-20 pointer-events-none z-20" id="raffle-sparkles"></div>
 
           <div id="raffle-card" class="relative bg-gradient-to-br from-cosmic-light/60 via-cosmic to-royal/30 border-2 border-saffron/40 rounded-2xl p-10 md:p-14 shadow-[0_0_60px_rgba(212,160,23,0.15)] hover:shadow-[0_0_80px_rgba(212,160,23,0.3)] transition-all duration-500 z-10">
-            <!-- Decorative corner accents -->
             <div class="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-saffron/60 rounded-tl-2xl"></div>
             <div class="absolute top-0 right-0 w-16 h-16 border-t-2 border-r-2 border-saffron/60 rounded-tr-2xl"></div>
             <div class="absolute bottom-0 left-0 w-16 h-16 border-b-2 border-l-2 border-saffron/60 rounded-bl-2xl"></div>
@@ -392,11 +392,9 @@ const base = import.meta.env.BASE_URL;
             <div class="text-center">
               <div class="inline-block animate-float mb-6">
                 <div id="raffle-icon" class="w-20 h-20 rounded-full bg-gradient-to-br from-saffron/30 to-amber/20 flex items-center justify-center mx-auto transition-all duration-500">
-                  <!-- Gift icon (default) -->
                   <svg id="icon-gift" class="w-10 h-10 text-saffron transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
                   </svg>
-                  <!-- Gold coin (on hover) -->
                   <svg id="icon-coin" class="w-12 h-12 hidden transition-all duration-300" viewBox="0 0 64 64" fill="none">
                     <ellipse cx="32" cy="32" rx="28" ry="28" fill="url(#coinGrad)" stroke="#b8860b" stroke-width="2"/>
                     <ellipse cx="32" cy="32" rx="22" ry="22" fill="none" stroke="#b8860b" stroke-width="1" opacity="0.5"/>
@@ -440,6 +438,7 @@ const base = import.meta.env.BASE_URL;
       </div>
     </div>
   </section>
+  )}
 
   <!-- ===== RSVP SECTION ===== -->
   <section id="rsvp" class="py-24 bg-cosmic relative">
@@ -679,6 +678,7 @@ const base = import.meta.env.BASE_URL;
     });
   });
 
+  /* --- Raffle section JS commented out ---
   // Confetti effect on raffle section hover
   const raffleCard = document.getElementById('raffle-card');
   const sparklesContainer = document.getElementById('raffle-sparkles');
@@ -715,10 +715,8 @@ const base = import.meta.env.BASE_URL;
     setTimeout(() => piece.remove(), (duration + delay) * 1000);
   }
 
-  // Firework particle burst from the gift icon
   function createFirework() {
     if (!sparklesContainer || !raffleCard) return;
-    // Calculate origin relative to sparkles container (which is -inset-20 = 80px offset)
     const cardRect = raffleCard.getBoundingClientRect();
     const containerRect = sparklesContainer.getBoundingClientRect();
     const originX = ((cardRect.left - containerRect.left + cardRect.width / 2) / containerRect.width) * 100;
@@ -755,7 +753,6 @@ const base = import.meta.env.BASE_URL;
     }
   }
 
-  // Trail sparks that shoot up before bursting
   function createTrail() {
     if (!sparklesContainer || !raffleCard) return;
     const cardRect = raffleCard.getBoundingClientRect();
@@ -790,22 +787,18 @@ const base = import.meta.env.BASE_URL;
   const raffleIconWrap = document.getElementById('raffle-icon');
 
   raffleCard?.addEventListener('mouseenter', () => {
-    // Swap gift to coin
     iconGift?.classList.add('hidden');
     iconCoin?.classList.remove('hidden');
     raffleIconWrap?.classList.add('bg-gradient-to-br', 'from-amber/40', 'to-saffron/40', 'shadow-[0_0_20px_rgba(212,160,23,0.5)]', 'scale-110');
-    // Confetti
     for (let i = 0; i < 20; i++) createConfetti();
     confettiInterval = setInterval(() => {
       for (let i = 0; i < 5; i++) createConfetti();
     }, 300);
-    // Fireworks - initial burst then periodic
     createTrail();
     fireworkInterval = setInterval(() => createTrail(), 1200);
   });
 
   raffleCard?.addEventListener('mouseleave', () => {
-    // Swap coin back to gift
     iconCoin?.classList.add('hidden');
     iconGift?.classList.remove('hidden');
     raffleIconWrap?.classList.remove('from-amber/40', 'to-saffron/40', 'shadow-[0_0_20px_rgba(212,160,23,0.5)]', 'scale-110');
@@ -818,8 +811,10 @@ const base = import.meta.env.BASE_URL;
       fireworkInterval = null;
     }
   });
+  --- end raffle JS --- */
 </script>
 
+<!-- Raffle CSS commented out
 <style>
   @keyframes confetti-fall {
     0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.9; }
@@ -835,3 +830,4 @@ const base = import.meta.env.BASE_URL;
     100% { transform: translateY(-200px); opacity: 0.3; }
   }
 </style>
+-->
